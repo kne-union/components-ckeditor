@@ -13,13 +13,26 @@ declare class Editor extends ClassicEditor {
             contentToolbar: string[];
         };
         htmlSupport: {
-            allow: {
+            allow: ({
                 name: string;
                 classes: boolean;
                 styles: boolean;
-            }[];
+                attributes?: undefined;
+            } | {
+                name: string;
+                classes: string[];
+                styles: boolean;
+                attributes: boolean;
+            })[];
         };
     };
+}
+declare namespace Editor {
+    namespace libs {
+        export { core };
+        export { widget };
+        export { ui };
+    }
 }
 import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
 import { Alignment } from "@ckeditor/ckeditor5-alignment";
@@ -77,3 +90,6 @@ import { WordCount } from "@ckeditor/ckeditor5-word-count";
 import { GeneralHtmlSupport } from "@ckeditor/ckeditor5-html-support";
 import { Style } from "@ckeditor/ckeditor5-style";
 import { SelectAll } from "@ckeditor/ckeditor5-select-all";
+import * as core from "@ckeditor/ckeditor5-core";
+import * as widget from "@ckeditor/ckeditor5-widget";
+import * as ui from "@ckeditor/ckeditor5-ui";
