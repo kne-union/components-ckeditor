@@ -33,9 +33,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
 
-      #- name: Publish Npm
-      #  env:
-      #    NODE_AUTH_TOKEN: ${{secrets.KNE_PACKAGE_PUBLISH}}
-      #  run: npm publish --access=public
-      #- name: Sync To Cnpm
-      #  run: npm i -g cnpm && cnpm sync @kne-components/components-ckeditor
+      - name: Publish Npm
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.KNE_PACKAGE_PUBLISH}}
+        run: npm publish --access=public
+      - name: Sync To Cnpm
+        run: npm i -g cnpm && cnpm sync @kne-components/components-ckeditor
