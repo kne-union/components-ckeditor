@@ -11,6 +11,21 @@
           "packageName": "@components/Editor"
         }
       ]
+    },
+    {
+      "title": "在表单中使用",
+      "description": "在表单中使用",
+      "code": "./form.js",
+      "scope": [
+        {
+          "name": "_Editor",
+          "packageName": "@components/Editor"
+        },
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        }
+      ]
     }
   ]
 }
