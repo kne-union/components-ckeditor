@@ -9,7 +9,7 @@ on:
     types:
       - closed
 jobs:
-  publish-npm:
+  publish:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - name: Build CK Editor
+        run: cd ./ckeditor && npm install --legacy-peer-deps && npm build && mkdir ../public/ckeditor && cp -r ./build/* ../public/ckeditor/
 
       - name: Install 🔧
         run: npm install --legacy-peer-deps
@@ -31,10 +33,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
 
-      - name: Publish Npm
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.KNE_PACKAGE_PUBLISH}}
-        run: npm publish --access=public
+      #- name: Publish Npm
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.KNE_PACKAGE_PUBLISH}}
+      #  run: npm publish --access=public
       ## 请修改对应的packageName后取消以下命令的注释
       #- name: Sync To Cnpm
-      #  run: npm i -g cnpm && cnpm sync packageName
+      #  run: npm i -g cnpm && cnpm sync @kne-components/components-ckeditor

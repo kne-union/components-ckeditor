@@ -1,10 +1,10 @@
 
-# OssUploadAdapterPlugin
+# Editor
 
 
 ### 概述
 
-富文本编辑器ckeditor的OSS图片上传适配器，Editor组件已经默认内置，不需要单独安装配置
+富文本编辑器ckeditor的封装
 
 
 ### 示例
@@ -13,19 +13,15 @@
 
 - 这里填写示例标题
 - 这里填写示例说明
-- _OssUploadAdapterPlugin(@components/OssUploadAdapterPlugin),_Editor(@components/Editor)
+- _Editor(@components/Editor)
 
 ```jsx
 const {default: Editor} = _Editor;
-const {useState} = React;
+const { useState } = React;
 const BaseExample = () => {
     const [value, onChange] = useState("<p>请输入内容</p>");
     return <div>
-        <Editor.Field value={value} onChange={onChange} config={{
-            toolbar: {
-                items: ["imageUpload"]
-            }
-        }}/>
+        <Editor.Field value={value} onChange={onChange}/>
         <div>预览：</div>
         <Editor.Content value={value}/>
     </div>;

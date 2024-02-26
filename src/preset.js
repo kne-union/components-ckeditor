@@ -23,10 +23,10 @@ remoteLoaderPreset({
             tpl: "{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build",
             defaultVersion: '0.1.3',
         },
-        'components-name': process.env.NODE_ENV === 'development' ? {
-            remote: 'components-name', url: '/', tpl: '{{url}}'
+        'components-ckeditor': process.env.NODE_ENV === 'development' ? {
+            remote: 'components-ckeditor', url: '/', tpl: '{{url}}'
         } : {
-            remote: 'components-name',
+            remote: 'components-ckeditor',
             url: 'https://registry.npmmirror.com',
             tpl: '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build',
             defaultVersion: process.env.DEFAULT_VERSION

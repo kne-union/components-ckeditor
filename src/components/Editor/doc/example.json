@@ -7,10 +7,6 @@
       "code": "./base.js",
       "scope": [
         {
-          "name": "_OssUploadAdapterPlugin",
-          "packageName": "@components/OssUploadAdapterPlugin"
-        },
-        {
           "name": "_Editor",
           "packageName": "@components/Editor"
         }

@@ -1,0 +1,39 @@
+.editor {
+  --min-height: 300px;
+
+  :global {
+    .ck.ck-toolbar {
+      border-color: transparent;
+    }
+
+    .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+      border-color: transparent;
+      border-top-color: var(--font-color-grey-3);
+    }
+
+    .ck.ck-content.ck-editor__editable {
+      min-height: var(--min-height);
+    }
+  }
+
+  border: solid 1px var(--font-color-grey-3);
+  border-radius: 2px;
+}
+
+.word-count {
+  display: flex;
+  justify-content: right;
+  padding: var(--ck-spacing-small) var(--ck-spacing-standard);
+  border-top: solid 1px var(--font-color-grey-3);
+  font-size: 12px;
+  color: var(--font-color-grey);
+  //background: var(--font-color-grey-3);
+}
+
+.surplus-count {
+  margin-left: 12px;
+
+  &.error {
+    color: var(--color-warning);
+  }
+}
