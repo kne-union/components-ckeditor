@@ -4,7 +4,7 @@
 
 ### 概述
 
-富文本编辑器ckeditor的OSS图片上传适配器，Editor组件已经默认内置，不需要单独安装配置
+图片上传Oss适配器，Editor组件已经默认加载该适配器，不需要单独配置添加
 
 
 ### 示例
@@ -13,7 +13,7 @@
 
 - 这里填写示例标题
 - 这里填写示例说明
-- _OssUploadAdapterPlugin(@components/OssUploadAdapterPlugin),_Editor(@components/Editor)
+- _Editor(@components/Editor),_OssUploadAdapterPlugin(@components/OssUploadAdapterPlugin)
 
 ```jsx
 const {default: Editor} = _Editor;
@@ -23,7 +23,7 @@ const BaseExample = () => {
     return <div>
         <Editor.Field value={value} onChange={onChange} config={{
             toolbar: {
-                items: ["imageUpload"]
+                items: ['imageUpload']
             }
         }}/>
         <div>预览：</div>
