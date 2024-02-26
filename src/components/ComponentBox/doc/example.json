@@ -11,8 +11,8 @@
           "packageName": "@components/Editor"
         },
         {
-          "name": "_OssUploadAdapterPlugin",
-          "packageName": "@components/OssUploadAdapterPlugin"
+          "name": "_ComponentBox",
+          "packageName": "@components/ComponentBox"
         }
       ]
     }

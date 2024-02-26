@@ -18,13 +18,7 @@ import {Highlight} from '@ckeditor/ckeditor5-highlight';
 import {HorizontalLine} from '@ckeditor/ckeditor5-horizontal-line';
 import {HtmlEmbed} from '@ckeditor/ckeditor5-html-embed';
 import {
-    AutoImage,
-    Image,
-    ImageCaption,
-    ImageResize,
-    ImageStyle,
-    ImageToolbar,
-    ImageUpload
+    AutoImage, Image, ImageCaption, ImageResize, ImageStyle, ImageToolbar, ImageUpload
 } from '@ckeditor/ckeditor5-image';
 import {Indent, IndentBlock} from '@ckeditor/ckeditor5-indent';
 import {AutoLink, Link, LinkImage} from '@ckeditor/ckeditor5-link';
@@ -50,142 +44,31 @@ import {Style} from '@ckeditor/ckeditor5-style';
 import {GeneralHtmlSupport} from '@ckeditor/ckeditor5-html-support';
 import {SelectAll} from '@ckeditor/ckeditor5-select-all';
 
+import * as core from '@ckeditor/ckeditor5-core';
+import * as widget from '@ckeditor/ckeditor5-widget';
+import * as ui from '@ckeditor/ckeditor5-ui';
+
+
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
 
 class Editor extends ClassicEditor {
-    static builtinPlugins = [
-        Alignment,
-        AutoImage,
-        AutoLink,
-        Autoformat,
-        BlockQuote,
-        Bold,
-        CloudServices,
-        CodeBlock,
-        Essentials,
-        FontBackgroundColor,
-        FontColor,
-        FontSize,
-        Heading,
-        Highlight,
-        HorizontalLine,
-        HtmlEmbed,
-        Image,
-        ImageCaption,
-        ImageResize,
-        ImageStyle,
-        ImageToolbar,
-        ImageUpload,
-        LinkImage,
-        Indent,
-        IndentBlock,
-        Italic,
-        Strikethrough,
-        Link,
-        List,
-        ListProperties,
-        MediaEmbed,
-        PageBreak,
-        Paragraph,
-        PasteFromOffice,
-        RemoveFormat,
-        SourceEditing,
-        SpecialCharacters,
-        SpecialCharactersArrows,
-        SpecialCharactersCurrency,
-        SpecialCharactersEssentials,
-        SpecialCharactersText,
-        Subscript,
-        Superscript,
-        Table,
-        TableCellProperties,
-        TableColumnResize,
-        TableProperties,
-        TableToolbar,
-        TextTransformation,
-        TodoList,
-        Underline,
-        WordCount,
-        GeneralHtmlSupport,
-        Style,
-        SelectAll
-    ];
+    static builtinPlugins = [Alignment, AutoImage, AutoLink, Autoformat, BlockQuote, Bold, CloudServices, CodeBlock, Essentials, FontBackgroundColor, FontColor, FontSize, Heading, Highlight, HorizontalLine, HtmlEmbed, Image, ImageCaption, ImageResize, ImageStyle, ImageToolbar, ImageUpload, LinkImage, Indent, IndentBlock, Italic, Strikethrough, Link, List, ListProperties, MediaEmbed, PageBreak, Paragraph, PasteFromOffice, RemoveFormat, SourceEditing, SpecialCharacters, SpecialCharactersArrows, SpecialCharactersCurrency, SpecialCharactersEssentials, SpecialCharactersText, Subscript, Superscript, Table, TableCellProperties, TableColumnResize, TableProperties, TableToolbar, TextTransformation, TodoList, Underline, WordCount, GeneralHtmlSupport, Style, SelectAll];
 
     static defaultConfig = {
         toolbar: {
-            items: [
-                'undo',
-                'redo',
-                '|',
-                'heading',
-                '|',
-                'bold',
-                'italic',
-                'underline',
-                'strikethrough',
-                'link',
-                'bulletedList',
-                'numberedList',
-                'todoList',
-                'fontBackgroundColor',
-                'fontColor',
-                'fontSize',
-                '|',
-                'alignment',
-                'pageBreak',
-                'outdent',
-                'indent',
-                '|',
-                'specialCharacters',
-                'subscript',
-                'superscript',
-                '|',
-                'imageUpload',
-                'blockQuote',
-                'insertTable',
-                'codeBlock',
-                'htmlEmbed',
-                'highlight',
-                'horizontalLine',
-                '|',
-                'selectAll',
-                'removeFormat',
-                'sourceEditing'
-            ]
-        },
-        language: 'zh-cn',
-        image: {
-            toolbar: [
-                'imageTextAlternative',
-                'toggleImageCaption',
-                'imageStyle:inline',
-                'imageStyle:block',
-                'imageStyle:side',
-                '|',
-                'resizeImage:25',
-                'resizeImage:50',
-                'resizeImage:75',
-                'resizeImage:original',
-                '|',
-                'linkImage'
-            ]
-        },
-        table: {
-            contentToolbar: [
-                'tableColumn',
-                'tableRow',
-                'mergeTableCells',
-                'tableCellProperties',
-                'tableProperties'
-            ]
-        },
-        htmlSupport: {
-            allow: [
-                {name: 'div', classes: true, styles: true}
-            ]
+            items: ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', 'underline', 'strikethrough', 'link', 'bulletedList', 'numberedList', 'todoList', 'fontBackgroundColor', 'fontColor', 'fontSize', '|', 'alignment', 'pageBreak', 'outdent', 'indent', '|', 'specialCharacters', 'subscript', 'superscript', '|', 'imageUpload', 'blockQuote', 'insertTable', 'codeBlock', 'htmlEmbed', 'highlight', 'horizontalLine', '|', 'selectAll', 'removeFormat', 'sourceEditing']
+        }, language: 'zh-cn', image: {
+            toolbar: ['imageTextAlternative', 'toggleImageCaption', 'imageStyle:inline', 'imageStyle:block', 'imageStyle:side', '|', 'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original', '|', 'linkImage']
+        }, table: {
+            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableCellProperties', 'tableProperties']
+        }, htmlSupport: {
+            allow: [{name: 'div', classes: true, styles: true}, {
+                name: 'section', classes: ['component-box'], styles: true, attributes: true
+            }]
         }
     };
 }
 
+Editor.libs = {core, widget, ui};
 export default Editor;
