@@ -19,7 +19,7 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - name: Build CK Editor
-        run: cd ./ckeditor && npm install --legacy-peer-deps && npm build && mkdir ../public/ckeditor && cp -r ./build/* ../public/ckeditor/
+        run: cd ./ckeditor && npm install --legacy-peer-deps && npm run build && mkdir ../public/ckeditor && cp -r ./build/* ../public/ckeditor/
 
       - name: Install 🔧
         run: npm install --legacy-peer-deps
