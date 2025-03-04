@@ -9,6 +9,7 @@ import useControlValue from '@kne/use-control-value';
 import OssUploadAdapterPlugin from '@components/OssUploadAdapterPlugin';
 import {App} from 'antd';
 import merge from 'lodash/merge';
+import './ckeditor5-content.css';
 import './ckeditor.scss';
 
 const CKContent = ({className, children}) => {
