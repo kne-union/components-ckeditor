@@ -5,7 +5,6 @@ declare class Editor extends ClassicEditor {
         toolbar: {
             items: string[];
         };
-        language: string;
         image: {
             toolbar: string[];
         };
