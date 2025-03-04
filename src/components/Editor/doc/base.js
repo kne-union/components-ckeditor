@@ -8,7 +8,7 @@ const BaseExample = createWithRemoteLoader({
     const [PureGlobal] = remoteModules;
     const [value, onChange] = useState("<p>请输入内容</p>");
     return <PureGlobal preset={preset}>
-        <Editor.Field config={{language:'en'}} value={value} onChange={onChange}/>
+        <Editor.Field value={value} onChange={onChange}/>
         <div>预览：</div>
         <Editor.Content value={value}/>
     </PureGlobal>;

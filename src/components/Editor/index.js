@@ -8,10 +8,11 @@ import classnames from 'classnames';
 import useControlValue from '@kne/use-control-value';
 import OssUploadAdapterPlugin from '@components/OssUploadAdapterPlugin';
 import {App} from 'antd';
+import merge from 'lodash/merge';
 import './ckeditor.scss';
 
-const CKContent = ({className, value}) => {
-    return <div className={classnames('ck ck-content', className)} dangerouslySetInnerHTML={{__html: value}}/>;
+const CKContent = ({className, children}) => {
+    return <div className={classnames('ck ck-content', className)} dangerouslySetInnerHTML={{__html: children}}/>;
 };
 
 const defaultEditorConfig = {
@@ -23,17 +24,17 @@ const defaultEditorConfig = {
         }
     }, style: {
         definitions: [{
-            name: '主标题', element: 'h2', classes: ['primary-part-title']
+            name: 'Headings', element: 'h2', classes: ['primary-part-title']
         }, {
-            name: '副标题', element: 'h3', classes: ['part-title']
+            name: 'Subheadings', element: 'h3', classes: ['part-title']
         }, {
-            name: '段落内容', element: 'p', classes: ['part-content']
+            name: 'Paragraph', element: 'p', classes: ['part-content']
         }, {
-            name: '卡片', element: 'p', classes: ['card']
+            name: 'Card', element: 'p', classes: ['card']
         }, {
-            name: '重要卡片', element: 'p', classes: ['primary-card']
+            name: 'Primary Card', element: 'p', classes: ['primary-card']
         }, {
-            name: '关键字', element: 'span', classes: ['key-word']
+            name: 'Keywords', element: 'span', classes: ['key-word']
         }]
     }
 };
@@ -46,7 +47,7 @@ const Editor = ({locale, config, pluginLoaders = [], ...props}) => {
         const {CKEditor} = data;
         const plugins = pluginLoaders.map(pluginLoader => pluginLoader(CKEditor.libs));
         return <CKEditorReact {...props} editor={CKEditor}
-                              config={Object.assign({}, {message}, config, {extraPlugins: [OssUploadAdapterPlugin, ...plugins]})}/>
+                              config={merge({}, {message}, defaultEditorConfig, config, {extraPlugins: [OssUploadAdapterPlugin, ...plugins]})}/>
     }}/>
 };
 
@@ -55,8 +56,8 @@ const CKEditorField = createWithRemoteLoader({
 })(({remoteModules, ...p}) => {
     const [usePreset] = remoteModules;
     const {apis, locale} = usePreset();
-    const {className, config, pluginLoaders, data, maxLength, wordCount, ...props} = Object.assign({}, {
-        maxLength: 5000, pluginLoaders: [], wordCount: false, config: defaultEditorConfig
+    const {className, config, pluginLoaders, data, maxLength, wordCount, ossUpload, ...props} = Object.assign({}, {
+        maxLength: 5000, pluginLoaders: [], wordCount: false
     }, p);
     const [value, onChange] = useControlValue(props);
     const [currentCharacters, setCurrentCharacters] = useState(0);
@@ -76,11 +77,11 @@ const CKEditorField = createWithRemoteLoader({
             setCurrentCharacters(wordCountPlugin.characters);
             const data = editor.getData();
             onChange(data);
-        }} config={{
+        }} config={merge({
             ossUpload: {
                 upload: apis?.file?.upload, uploadUrl: apis?.file?.uploadUrl
             }
-        }}/>
+        }, config, {ossUpload})}/>
         {wordCount && <div className={style['word-count']}>
             <div>当前字符:{currentCharacters}</div>
             <div
