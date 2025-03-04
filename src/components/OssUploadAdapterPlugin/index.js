@@ -1,9 +1,43 @@
 import imgFail from './img_fail.svg';
 
+const resizeBase64Image = (base64, width, height) => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = base64;
+
+        img.onload = function () {
+            // 创建一个 Canvas 元素
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const wRatio = img.width / width, hRatio = img.height / height;
+            const ratio = Math.max(wRatio, hRatio, 1);
+
+            // 设置 Canvas 的宽度和高度为缩放后的尺寸
+            canvas.width = img.width / ratio;
+            canvas.height = img.height / ratio;
+
+            // 将图片绘制到 Canvas 上，并缩放
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            // 从 Canvas 中获取缩放后的图片数据，并将其转换为 Base64 格式
+            const resizedBase64 = canvas.toDataURL('image/png'); // 可以根据需要更改图片格式
+            // 调用回调函数，返回缩放后的 Base64 图片
+            resolve(resizedBase64);
+        };
+
+        img.onerror = function (error) {
+            reject(error);
+        };
+    });
+}
+
 class OssUploadAdapter {
     constructor(loader, options) {
         this.loader = loader;
         this.options = options;
+        this.base64MaxWidth = options.base64MaxWidth || 600;
+        this.base64MaxHeight = options.base64MaxHeight || 600;
     }
 
     async upload() {
@@ -17,17 +51,18 @@ class OssUploadAdapter {
                 };
                 fileReader.readAsDataURL(file);
             });
+
             return {
-                default: data
+                default: await resizeBase64Image(data, this.base64MaxWidth, this.base64MaxHeight)
             };
         }
-        const {code, data, msg} = await this.options.upload({file});
-        if (code !== 0) {
-            this.options.message.error(msg);
+        const {data: resData} = await this.options.upload({file});
+        if (resData.code !== 0) {
+            this.options.message.error(resData.msg);
             return {default: imgFail};
         }
         return {
-            default: data
+            default: resData.data
         };
     }
 }
