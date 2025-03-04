@@ -1,5 +1,5 @@
 {
-  "isFull": false,
+  "isFull": true,
   "list": [
     {
       "title": "这里填写示例标题",
@@ -9,6 +9,14 @@
         {
           "name": "_Editor",
           "packageName": "@components/Editor"
+        },
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "_mockPreset",
+          "packageName": "@root/mockPreset"
         }
       ]
     },
@@ -24,6 +32,10 @@
         {
           "name": "remoteLoader",
           "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "_mockPreset",
+          "packageName": "@root/mockPreset"
         }
       ]
     }
