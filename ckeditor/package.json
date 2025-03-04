@@ -43,6 +43,7 @@
     "@ckeditor/ckeditor5-dev-translations": "^39.6.1",
     "@ckeditor/ckeditor5-dev-utils": "^39.6.1",
     "@ckeditor/ckeditor5-theme-lark": "^41.1.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.7",
     "postcss": "^8.4.29",
     "postcss-loader": "^4.3.0",
@@ -55,7 +56,9 @@
     "webpack-cli": "^4.10.0"
   },
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "npm run build-cn && npm run build-en",
+    "build-cn": "cross-env LANGUAGE=zh-cn webpack --mode production",
+    "build-en": "cross-env LANGUAGE=en webpack --mode production",
     "postbuild": "tsc --declaration --declarationDir build --stripInternal --emitDeclarationOnly"
   }
 }

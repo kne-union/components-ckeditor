@@ -58,7 +58,7 @@ class Editor extends ClassicEditor {
     static defaultConfig = {
         toolbar: {
             items: ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', 'underline', 'strikethrough', 'link', 'bulletedList', 'numberedList', 'todoList', 'fontBackgroundColor', 'fontColor', 'fontSize', '|', 'alignment', 'pageBreak', 'outdent', 'indent', '|', 'specialCharacters', 'subscript', 'superscript', '|', 'imageUpload', 'blockQuote', 'insertTable', 'codeBlock', 'htmlEmbed', 'highlight', 'horizontalLine', '|', 'selectAll', 'removeFormat', 'sourceEditing']
-        }, language: 'zh-cn', image: {
+        }, image: {
             toolbar: ['imageTextAlternative', 'toggleImageCaption', 'imageStyle:inline', 'imageStyle:block', 'imageStyle:side', '|', 'resizeImage:25', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original', '|', 'linkImage']
         }, table: {
             contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableCellProperties', 'tableProperties']
