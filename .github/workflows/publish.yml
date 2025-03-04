@@ -22,7 +22,7 @@ jobs:
         run: cd ./ckeditor && npm install && npm run build && mkdir ../public/ckeditor && cp -r ./build/* ../public/ckeditor/
 
       - name: Install 🔧
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Build 🏗️
         run: npm run build
