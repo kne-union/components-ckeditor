@@ -19,7 +19,9 @@ const BaseExample = createWithRemoteLoader({
                 <FormInfo
                     title="在表单中使用"
                     column={1}
-                    list={[<CKEditor label="富文本" name="des"/>]}
+                    list={[<CKEditor label="富文本" name="des" onReady={editor => {
+                        editor.setData('啦啦啦啦啦德玛西亚')
+                    }}/>]}
                     rule="REQ"
                 />
                 <SubmitButton type="primary" block>

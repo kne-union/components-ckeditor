@@ -54,7 +54,7 @@ const Editor = ({locale, config, pluginLoaders = [], ...props}) => {
 
 const CKEditorField = createWithRemoteLoader({
     modules: ['components-core:Global@usePreset']
-})(({remoteModules, ...p}) => {
+})(({remoteModules, onReady, ...p}) => {
     const [usePreset] = remoteModules;
     const {apis, locale} = usePreset();
     const {className, config, pluginLoaders, data, maxLength, wordCount, ossUpload, ...props} = Object.assign({}, {
@@ -68,6 +68,7 @@ const CKEditorField = createWithRemoteLoader({
         <Editor locale={locale} onReady={editor => {
             const wordCountPlugin = editor.plugins.get('WordCount');
             setCurrentCharacters(wordCountPlugin.characters);
+            onReady && onReady(editor);
         }} data={value} onChange={(event, editor) => {
             const wordCountPlugin = editor.plugins.get('WordCount');
             if (maxLength && wordCountPlugin.characters > maxLength) {
